@@ -5,11 +5,11 @@
 PhoneBook::PhoneBook() : _index(0), _size(0) { }
 
 PhoneBook::pointer PhoneBook::data() {
-    return contacts;
+    return static_cast<pointer>(contacts);
 }
 
 PhoneBook::const_pointer PhoneBook::data() const {
-    return contacts;
+    return static_cast<const_pointer>(contacts);
 }
 
 PhoneBook::size_type PhoneBook::size() const {
@@ -29,14 +29,16 @@ PhoneBook::size_type &PhoneBook::index() {
 }
 
 PhoneBook::reference PhoneBook::at(PhoneBook::size_type pos) {
-    if (!(pos < size()))
+    if (!(pos < size())) {
         throw std::out_of_range("out of bounds access in PhoneBook");
-    return contacts[pos];
+	}
+    return contacts[pos]; 
 }
 
 PhoneBook::const_reference PhoneBook::at(PhoneBook::size_type pos) const {
-    if (!(pos < size()))
+    if (!(pos < size())) {
         throw std::out_of_range("out of bounds access in PhoneBook");
+	}
     return contacts[pos];
 }
 
@@ -73,8 +75,9 @@ PhoneBook::const_reference PhoneBook::operator[](size_type pos) const {
 }
 
 PhoneBook::size_type PhoneBook::increment_index() {
-    if (size() < CONTACT_SIZE)
+    if (size() < CONTACT_SIZE) {
         size() += 1;
+	}
     index() = (index() + 1) % CONTACT_SIZE;
     return index();
 }

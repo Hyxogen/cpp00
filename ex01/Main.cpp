@@ -1,5 +1,6 @@
 #include "PhoneBook.h"
 
+#include "Algorithm.h"
 #include <cstdlib>
 #include <iomanip>
 #include <iostream>
@@ -8,7 +9,9 @@
 # define COLUMN_WIDTH 10
 #endif
 
-std::string get_line(std::string prompt) {
+#define BASE10_RADIX 10
+
+std::string get_line(const std::string &prompt) {
     std::string line;
     std::cout << prompt;
     std::getline(std::cin, line);
@@ -19,24 +22,26 @@ std::string get_line(std::string prompt) {
 }
 
 std::string &truncate(std::string &str, std::size_t width, char ellips) {
-    if (str.length() <= width)
+    if (str.length() <= width) {
         return str;
-    if (width == 0)
+	} if (width == 0) {
         str = str.substr(0, 0);
-    else
+	} else {
         str = str.substr(0, width - 1) + ellips;
+	}
     return (str);
 }
 
 std::string to_string(unsigned long value) {
     std::string result;
-    if (value == 0)
+    if (value == 0) {
         return std::string("0");
-
+	}
     while (value > 0) {
-        result = static_cast<char>((value % 10) + '0') + result;
-        value /= 10;
+        result += static_cast<char>((value % BASE10_RADIX) + '0');
+        value /= BASE10_RADIX;
     }
+	ft::reverse(result.begin(), result.end());
     return (result);
 }
 
@@ -86,7 +91,7 @@ void search(const PhoneBook &phone_book) {
     display_contacts(phone_book);
 }
 
-void execute_cmd(std::string command, PhoneBook &phone_book) {
+void execute_cmd(const std::string &command, PhoneBook &phone_book) {
     if (command == "ADD") {
         add_contact(phone_book);
     } else if (command == "SEARCH") {
@@ -100,9 +105,9 @@ int main() {
     PhoneBook   phone_book;
     std::string line;
 
-    while (1) {
+    while (true) {
         line = get_line("Command: ");
         execute_cmd(line, phone_book);
     }
-    return 0;
+    return EXIT_SUCCESS;
 }
