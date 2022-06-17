@@ -1,6 +1,6 @@
-#include "string.h"
+#include "String.h"
 
-#include "algorithm.h"
+#include "Algorithm.h"
 
 #define BASE10_RADIX 10
 

@@ -1,6 +1,6 @@
 #include "PhoneBook.h"
-#include "algorithm.h"
-#include "string.h"
+#include "Algorithm.h"
+#include "String.h"
 
 #include <cstdlib>
 #include <iomanip>
