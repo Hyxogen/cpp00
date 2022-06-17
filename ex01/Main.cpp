@@ -1,5 +1,6 @@
-#include "Algorithm.h"
 #include "PhoneBook.h"
+#include "algorithm.h"
+#include "string.h"
 
 #include <cstdlib>
 #include <iomanip>
@@ -9,8 +10,6 @@
 # define COLUMN_WIDTH 10
 #endif
 
-#define BASE10_RADIX 10
-
 std::string get_line(const std::string &prompt) {
     std::string line;
     std::cout << prompt;
@@ -19,31 +18,6 @@ std::string get_line(const std::string &prompt) {
         std::exit(0);
     }
     return line;
-}
-
-std::string &truncate(std::string &str, std::size_t width, char ellips) {
-    if (str.length() <= width) {
-        return str;
-    }
-    if (width == 0) {
-        str = str.substr(0, 0);
-    } else {
-        str = str.substr(0, width - 1) + ellips;
-    }
-    return (str);
-}
-
-std::string to_string(unsigned long value) {
-    std::string result;
-    if (value == 0) {
-        return std::string("0");
-    }
-    while (value > 0) {
-        result += static_cast<char>((value % BASE10_RADIX) + '0');
-        value /= BASE10_RADIX;
-    }
-    ft::reverse(result.begin(), result.end());
-    return (result);
 }
 
 void print_column(std::string str) {
@@ -73,7 +47,8 @@ void display_contacts(const PhoneBook &phone_book) {
     for (PhoneBook::const_iterator it = phone_book.cbegin();
          it != phone_book.cend(); ++it) {
         print_table_entry(
-            to_string(ndx), it->first_name(), it->last_name(), it->nickname());
+            ft::to_string(ndx), it->first_name(), it->last_name(),
+            it->nickname());
         ndx++;
     }
     print_separator();
