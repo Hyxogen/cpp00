@@ -11,14 +11,15 @@ class Contact {
 
 public:
     Contact(
-        const std::string &first_name, const std::string &last_name, const std::string &nickname,
-        const std::string &phonenum, const std::string &secret);
+        const std::string &first_name, const std::string &last_name,
+        const std::string &nickname, const std::string &phonenum,
+        const std::string &secret);
 
     Contact();
 
-	Contact(const Contact &other);
+    Contact(const Contact &other);
 
-	~Contact();
+    ~Contact();
 
     Contact &operator=(const Contact &other);
 
