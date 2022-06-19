@@ -1,6 +1,7 @@
 #include "Algorithm.h"
 #include "PhoneBook.h"
 #include "String.h"
+#include "Util.h"
 
 #include <cstdlib>
 #include <iomanip>
@@ -10,21 +11,9 @@
 # define COLUMN_WIDTH 10
 #endif
 
-std::string get_line(const std::string &prompt) {
-    std::string line;
-    std::cout << prompt;
-    std::getline(std::cin, line);
-    if (std::cin.eof()) {
-        std::exit(0);
-    }
-    return line;
-}
-
 void add_contact(PhoneBook &phone_book) {
-    Contact contact = Contact(
-        get_line("First name: "), get_line("Last name: "),
-        get_line("Nickname: "), get_line("Phonenumber: "),
-        get_line("Darkest secret: "));
+    Contact contact;
+    std::cin >> contact;
     phone_book.add_contact(contact);
     std::cout << "Saved contact!" << std::endl << std::endl;
 }
@@ -60,7 +49,7 @@ int main() {
     std::string line;
 
     while (true) {
-        line = get_line("Command: ");
+        line = get_line(std::cin, "Command: ");
         execute_cmd(line, phone_book);
     }
     return EXIT_SUCCESS;
