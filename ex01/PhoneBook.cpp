@@ -96,15 +96,18 @@ void PhoneBook::add_contact(PhoneBook::const_reference contact) {
 }
 
 std::ostream &operator<<(std::ostream &os, const PhoneBook &phone_book) {
-    PhoneBook::size_type ndx = 0;
-	TableFmt<COLUMN_WIDTH, 4, '-'> fmt;
+    PhoneBook::size_type           ndx = 0;
+    TableFmt<COLUMN_WIDTH, 4, '-'> fmt;
 
-	fmt << "index" << "first name" << "last name" << "nickname";
+    fmt << "index"
+        << "first name"
+        << "last name"
+        << "nickname";
     for (PhoneBook::const_iterator it = phone_book.cbegin();
          it != phone_book.cend(); ++it) {
-		fmt << ndx << it->first_name() << it->last_name() << it->nickname();
+        fmt << ndx << it->first_name() << it->last_name() << it->nickname();
         ndx++;
     }
-	os << fmt;
+    os << fmt;
     return os;
 }
