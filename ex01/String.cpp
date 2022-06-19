@@ -21,7 +21,7 @@ namespace ft {
 
 }
 
-std::string &truncate(std::string &str, std::size_t width, char ellips) {
+std::string truncate(std::string str, std::size_t width, char ellips) {
     if (str.length() <= width) {
         return str;
     }
