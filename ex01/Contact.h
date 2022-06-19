@@ -1,5 +1,6 @@
 #ifndef CONTACT_H
 #define CONTACT_H
+#include <ostream>
 #include <string>
 
 class Contact {
@@ -29,5 +30,7 @@ public:
     const std::string &phonenum() const;
     const std::string &secret() const;
 };
+
+std::ostream &operator<<(std::ostream &os, const Contact &contact);
 
 #endif

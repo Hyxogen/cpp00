@@ -53,3 +53,12 @@ const std::string &Contact::phonenum() const {
 const std::string &Contact::secret() const {
     return _secret;
 }
+
+std::ostream &operator<<(std::ostream &os, const Contact &contact) {
+    os << "First name: " << contact.first_name() << std::endl
+       << "Last name: " << contact.last_name() << std::endl
+       << "Nickname: " << contact.nickname() << std::endl
+       << "Phone number: " << contact.phonenum() << std::endl
+       << "Darkest secret:" << contact.secret();
+    return os;
+}

@@ -4,6 +4,7 @@
 #include "Contact.h"
 
 #include <cstddef>
+#include <ostream>
 
 #ifndef CONTACT_SIZE
 # define CONTACT_SIZE 2
@@ -58,5 +59,7 @@ public:
 
     const_reference operator[](size_type pos) const;
 };
+
+std::ostream &operator<<(std::ostream &os, const PhoneBook &phone_book);
 
 #endif

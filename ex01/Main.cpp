@@ -1,5 +1,5 @@
-#include "PhoneBook.h"
 #include "Algorithm.h"
+#include "PhoneBook.h"
 #include "String.h"
 
 #include <cstdlib>
@@ -20,40 +20,6 @@ std::string get_line(const std::string &prompt) {
     return line;
 }
 
-void print_column(std::string str) {
-    std::cout << '|';
-    std::cout << std::setw(COLUMN_WIDTH) << truncate(str, COLUMN_WIDTH, '.');
-}
-
-void print_separator() {
-    std::cout << "---------------------------------------------" << std::endl;
-}
-
-void print_table_entry(
-    const std::string &str0, const std::string &str1, const std::string &str2,
-    const std::string &str3) {
-    print_separator();
-    print_column(str0);
-    print_column(str1);
-    print_column(str2);
-    print_column(str3);
-    std::cout << "|" << std::endl;
-}
-
-void display_contacts(const PhoneBook &phone_book) {
-    PhoneBook::size_type ndx = 0;
-
-    print_table_entry("index", "first name", "last name", "nickname");
-    for (PhoneBook::const_iterator it = phone_book.cbegin();
-         it != phone_book.cend(); ++it) {
-        print_table_entry(
-            ft::to_string(ndx), it->first_name(), it->last_name(),
-            it->nickname());
-        ndx++;
-    }
-    print_separator();
-}
-
 void add_contact(PhoneBook &phone_book) {
     Contact contact = Contact(
         get_line("First name: "), get_line("Last name: "),
@@ -64,7 +30,19 @@ void add_contact(PhoneBook &phone_book) {
 }
 
 void search(const PhoneBook &phone_book) {
-    display_contacts(phone_book);
+    std::string index_str;
+
+    std::cout << phone_book;
+
+    /*
+while (true) {
+    index_str = get_line("Index: ");
+    if (!is_all_num(index_str)) {
+        std::cerr << "index must contain only digits" << std::endl;
+        continue;
+    }
+}
+    */
 }
 
 void execute_cmd(const std::string &command, PhoneBook &phone_book) {
