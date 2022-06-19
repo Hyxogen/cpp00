@@ -1,5 +1,7 @@
 #include "Contact.h"
 
+#include "Util.h"
+
 Contact::Contact(
     const std::string &first_name, const std::string &last_name,
     const std::string &nickname, const std::string &phonenum,
@@ -61,4 +63,13 @@ std::ostream &operator<<(std::ostream &os, const Contact &contact) {
        << "Phone number: " << contact.phonenum() << std::endl
        << "Darkest secret:" << contact.secret();
     return os;
+}
+
+std::istream &operator>>(std::istream &is, Contact &contact) {
+    contact._first_name = get_line(is, "First name: ");
+    contact._last_name  = get_line(is, "Last name: ");
+    contact._nickname   = get_line(is, "Nickname: ");
+    contact._phone_num  = get_line(is, "Phone number: ");
+    contact._secret     = get_line(is, "Darkest secret: ");
+    return is;
 }
