@@ -56,20 +56,28 @@ const std::string &Contact::secret() const {
     return _secret;
 }
 
-std::ostream &operator<<(std::ostream &os, const Contact &contact) {
-    os << "First name: " << contact.first_name() << std::endl
-       << "Last name: " << contact.last_name() << std::endl
-       << "Nickname: " << contact.nickname() << std::endl
-       << "Phone number: " << contact.phonenum() << std::endl
-       << "Darkest secret:" << contact.secret();
+std::ostream &Contact::write(std::ostream &os) const {
+    os << "First name: " << first_name() << std::endl
+       << "Last name: " << last_name() << std::endl
+       << "Nickname: " << nickname() << std::endl
+       << "Phone number: " << phonenum() << std::endl
+       << "Darkest secret:" << secret();
     return os;
 }
 
-std::istream &operator>>(std::istream &is, Contact &contact) {
-    contact._first_name = get_line(is, "First name: ");
-    contact._last_name  = get_line(is, "Last name: ");
-    contact._nickname   = get_line(is, "Nickname: ");
-    contact._phone_num  = get_line(is, "Phone number: ");
-    contact._secret     = get_line(is, "Darkest secret: ");
+std::istream &Contact::parse(std::istream &is) {
+    _first_name = get_line(is, "First name: ");
+    _last_name  = get_line(is, "Last name: ");
+    _nickname   = get_line(is, "Nickname: ");
+    _phone_num  = get_line(is, "Phone number: ");
+    _secret     = get_line(is, "Darkest secret: ");
     return is;
+}
+
+std::ostream &operator<<(std::ostream &os, const Contact &contact) {
+    return contact.write(os);
+}
+
+std::istream &operator>>(std::istream &is, Contact &contact) {
+    return contact.parse(is);
 }

@@ -3,18 +3,14 @@
 #include <iostream>
 #include <string>
 
-struct Contact {
-    /* Usually I would make these variables private, but I really wanted to use
-     * the stream extraction operator (<<) and I wasn't allowed to use the
-     * friend keyword in this subject, so I've made it public. I did keep the
-     * underscore at the beginning to hint that this isn't part of the public
-     * interface */
+class Contact {
     std::string _first_name;
     std::string _last_name;
     std::string _nickname;
     std::string _phone_num;
     std::string _secret;
 
+public:
     Contact(
         const std::string &first_name, const std::string &last_name,
         const std::string &nickname, const std::string &phonenum,
@@ -33,6 +29,12 @@ struct Contact {
     const std::string &nickname() const;
     const std::string &phonenum() const;
     const std::string &secret() const;
+
+    /* Usually I wouldn't make these functions, but since I can't use the friend
+     * keyword I made these two functions that will be called from operator<<
+     * and operator>> respectively*/
+    std::ostream &write(std::ostream &os) const;
+    std::istream &parse(std::istream &is);
 };
 
 std::ostream &operator<<(std::ostream &os, const Contact &contact);
