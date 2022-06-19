@@ -37,9 +37,9 @@ public:
     std::istream &parse(std::istream &is);
 };
 
+/* Like said above in contact class, I usually would make these functions
+ * friends of Contact */
 std::ostream &operator<<(std::ostream &os, const Contact &contact);
-/* Like said above in contact class, I usually would make this function a friend
- * of Contact */
 std::istream &operator>>(std::istream &is, Contact &contact);
 
 #endif

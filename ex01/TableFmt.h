@@ -1,7 +1,7 @@
 #ifndef TABLE_FORMATTER_H
 #define TABLE_FORMATTER_H
 
-#include "String.h"
+#include "Util.h"
 
 #include <iomanip>
 #include <ostream>

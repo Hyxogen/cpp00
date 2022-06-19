@@ -1,6 +1,5 @@
 #include "PhoneBook.h"
 
-#include "String.h"
 #include "TableFmt.h"
 
 #include <iomanip>
