@@ -1,7 +1,7 @@
 TARGET		:= nokia
 
-SOURCES		:= Main.cpp PhoneBook.cpp Contact.cpp String.cpp
-HEADERS		:= PhoneBook.h Contact.h Algorithm.h
+SOURCES		:= Main.cpp PhoneBook.cpp Contact.cpp String.cpp Util.cpp
+HEADERS		:= PhoneBook.h Contact.h Algorithm.h Util.h TableFmt.h
 OBJECTS		:= $(addsuffix .o, $(SOURCES))
 
 CXX			:= clang++
