@@ -3,6 +3,12 @@
 #include <ctime>
 #include <iostream>
 
+#ifndef TIME_BUFFER_SIZE
+# define TIME_BUFFER_SIZE 128
+#elif TIME_BUFFER_SIZE <= 0
+# error "TIME_BUFFER_SIZE must be a positive integer"
+#endif
+
 int Account::_nbAccounts         = 0;
 int Account::_totalAmount        = 0;
 int Account::_totalNbDeposits    = 0;
@@ -45,12 +51,12 @@ void Account::makeDeposit(int deposit) {
     _totalNbDeposits += 1;
 }
 
-bool Account::makeWithdrawal(int deposit) {
-    if (deposit > _amount) {
+bool Account::makeWithdrawal(int withdrawal) {
+    if (withdrawal > _amount) {
         return false;
     }
-    _amount -= deposit;
-    _totalAmount -= deposit;
+    _amount -= withdrawal;
+    _totalAmount -= withdrawal;
     _nbWithdrawals += 1;
     _totalNbWithdrawals += 1;
     return true;
@@ -59,10 +65,12 @@ bool Account::makeWithdrawal(int deposit) {
 void Account::_displayTimestamp() {
     const time_t     now       = time(NULL);
     const struct tm *time_info = localtime(&now);
-    char             buffer[128];
+    char             buffer[TIME_BUFFER_SIZE];
 
-    strftime(buffer, 128, "[%Y%m%d_%H%M%S]", time_info);
-    std::cout << buffer;
+    strftime(
+        static_cast<char *>(buffer), TIME_BUFFER_SIZE, "[%Y%m%d_%H%M%S]",
+        time_info);
+    std::cout << static_cast<char *>(buffer);
 }
 
 int Account::checkAmount() const {
