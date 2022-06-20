@@ -1,7 +1,12 @@
 #ifndef UTIL_H
 #define UTIL_H
 
+#include <string>
 #include <istream>
+
+namespace ft {
+	unsigned long stoul(const std::string &str, std::size_t *pos = NULL, int base = 10); 
+}
 
 std::string get_line(std::istream &is, const std::string &prompt);
 
