@@ -17,7 +17,7 @@ namespace ft {
      * I was allowed to use the boost library */
     template<>
     bool try_lexical_convert(std::size_t &target, const std::string &source) {
-        std::size_t       pos   = 0;
+        std::ptrdiff_t    pos   = 0;
         char             *end   = NULL;
         const char *const begin = source.c_str();
 
@@ -29,13 +29,12 @@ namespace ft {
         ) {
             return false;
         }
-        pos = static_cast<std::size_t>(end - begin);
-        if (source.begin() + pos
-            < source.end() // checking if source did not contain only digits
-        ) {
-            return false;
-        }
-        return true;
+        pos = static_cast<std::ptrdiff_t>(end - begin);
+        return (
+            source.begin() + pos
+            == source.end()); // if conversion did not reach the end, it would
+                              // mean that the source also contained non
+                              // literals in which case we should return false
     }
 
     template<typename Target, typename Source>
