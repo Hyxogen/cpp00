@@ -1,5 +1,6 @@
 #include "PhoneBook.h"
 #include "Util.h"
+#include "lexical_cast.h"
 
 #include <cstdlib>
 #include <iomanip>
@@ -13,21 +14,14 @@ void add_contact(PhoneBook &phone_book) {
 }
 
 void search(const PhoneBook &phone_book) {
-    std::string index_str;
     std::size_t index = 0;
-    std::size_t end   = 0;
 
     std::cout << phone_book;
-
     while (true) {
-        index_str = get_line(std::cin, "Index: ");
         try {
-            index = ft::stoul(index_str, &end);
+            index =
+                ft::lexical_cast<std::size_t>(get_line(std::cin, "Index: "));
         } catch (std::exception &ex) {
-            std::cerr << "Invalid index" << std::endl;
-            continue;
-        }
-        if (end < index_str.length()) {
             std::cerr << "Invalid index" << std::endl;
             continue;
         }

@@ -1,7 +1,7 @@
 TARGET		:= nokia
 
 SOURCES		:= Main.cpp PhoneBook.cpp Contact.cpp Util.cpp
-HEADERS		:= PhoneBook.h Contact.h Util.h TableFmt.h
+HEADERS		:= PhoneBook.h Contact.h Util.h TableFmt.h Lexical_Cast.h
 OBJECTS		:= $(addsuffix .o, $(SOURCES))
 
 CXX			:= clang++

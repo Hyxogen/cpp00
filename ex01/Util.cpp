@@ -1,31 +1,7 @@
 #include "Util.h"
 
-#include <cerrno>
 #include <cstdlib>
 #include <iostream>
-#include <limits>
-#include <stdexcept>
-
-namespace ft {
-    unsigned long stoul(const std::string &str, std::size_t *pos, int base) {
-        char             *end   = NULL;
-        const char *const begin = str.c_str();
-        unsigned long     value = 0;
-
-        value = std::strtol(begin, &end, base);
-        if (value == std::numeric_limits<unsigned long>::max()
-            && errno == ERANGE) {
-            throw std::out_of_range("ft::stoul");
-        }
-        if (end == begin) {
-            throw std::invalid_argument("ft::stoul");
-        }
-        if (pos != NULL) {
-            *pos = static_cast<std::size_t>(end - begin);
-        }
-        return value;
-    }
-}
 
 std::string get_line(std::istream &is, const std::string &prompt) {
     std::string line;
