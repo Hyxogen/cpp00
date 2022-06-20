@@ -4,9 +4,12 @@
 #include <istream>
 #include <string>
 
+#define FT_BASE10_RADIX 10
+
 namespace ft {
-    unsigned long
-    stoul(const std::string &str, std::size_t *pos = NULL, int base = 10);
+    unsigned long stoul(
+        const std::string &str, std::size_t *pos = NULL,
+        int base = FT_BASE10_RADIX);
 }
 
 std::string get_line(std::istream &is, const std::string &prompt);

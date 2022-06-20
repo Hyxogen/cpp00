@@ -10,7 +10,7 @@ namespace ft {
     unsigned long stoul(const std::string &str, std::size_t *pos, int base) {
         char             *end   = NULL;
         const char *const begin = str.c_str();
-        unsigned long     value;
+        unsigned long     value = 0;
 
         value = std::strtol(begin, &end, base);
         if (value == std::numeric_limits<unsigned long>::max()

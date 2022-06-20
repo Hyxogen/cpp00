@@ -14,8 +14,8 @@ void add_contact(PhoneBook &phone_book) {
 
 void search(const PhoneBook &phone_book) {
     std::string index_str;
-    std::size_t index;
-    std::size_t end;
+    std::size_t index = 0;
+    std::size_t end   = 0;
 
     std::cout << phone_book;
 
